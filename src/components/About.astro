@@ -8,8 +8,11 @@ const expertise = [
   'GA4 / GTM',
   'HubSpot',
   'Revenue Operations',
+  'AI Tool Setup',
+  'Process Automation',
   'AEO / GEO',
   'Marketing Automation',
+  'Tableau',
 ];
 ---
 
@@ -31,7 +34,8 @@ const expertise = [
           </div>
           <div class="cred">
             <span class="cred-label">Education</span>
-            <span class="cred-value">St. John's College, 2018</span>
+            <span class="cred-value">Vanderbilt MSDS</span>
+            <span class="cred-value">UC San Diego BS</span>
           </div>
           <div class="cred">
             <span class="cred-label">Focus</span>
@@ -47,20 +51,59 @@ const expertise = [
       <!-- Right: bio -->
       <div class="bio">
         <p>
-          d2b2 is the consulting practice of Danny Byers — a data scientist and
-          growth operator who works at the intersection of paid marketing, revenue
-          operations, and analytical infrastructure.
+          Most marketing decisions still happen on gut feel and monthly reports
+          that arrive too late to act on. Danny takes a different approach,
+          applying data science thinking to paid growth and revenue operations:
+          reproducible systems, clean attribution, and analysis that gives
+          executives clear answers instead of seasonal guesses.
         </p>
         <p>
-          The work spans Google Ads, Meta, HubSpot, GA4/GTM, SQL data pipelines,
-          and AEO content strategy — usually in combination, because real growth
-          stacks don't stay in neat departmental boxes.
+          Every engagement follows the same model. Audit what exists, build
+          what's missing, teach your team how it works, and hand over the keys.
+          The goal isn't a long retainer. It's a business that can run its own
+          marketing stack after the work is done.
         </p>
         <p>
           The name is a play on the work: D. Byers, databases, data-driven B2B.
-          The point is precision over guesswork, and systems that outlast the
-          engagement.
+          The focus is on companies where marketing has been reactive and
+          underpowered. The opportunity is making it precise.
         </p>
+        <div class="philosophy-grid">
+          <div class="philosophy-block">
+            <div class="phil-header">
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="0" y="0" width="9" height="9" fill="#CFAE70"/>
+                <rect x="11" y="0" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+                <rect x="0" y="11" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+                <rect x="11" y="11" width="9" height="9" fill="#CFAE70"/>
+              </svg>
+              <span class="phil-tag">Extreme Ownership</span>
+            </div>
+            <p class="phil-body">We don't sit on our hands. We actively look for solutions. That's the whole job.</p>
+          </div>
+          <div class="philosophy-block">
+            <div class="phil-header">
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="0" y="0" width="9" height="9" fill="#CFAE70"/>
+                <rect x="11" y="0" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+                <rect x="0" y="11" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+                <rect x="11" y="11" width="9" height="9" fill="#CFAE70"/>
+              </svg>
+              <span class="phil-tag">Simple by Design</span>
+            </div>
+            <p class="phil-body">No overengineered solutions. Clean processes, clear documentation, and nothing built that creates another problem to solve.</p>
+          </div>
+        </div>
+
+        <ul class="proof-points">
+          <li>Managed and optimized $1M+ in Google Ads and Meta spend against true revenue attribution, not platform-reported ROAS</li>
+          <li>Designed GTM and GA4 cross-domain tracking architectures connecting multiple web properties into a single clean data stream</li>
+          <li>Built PMAX campaign structures with custom asset groups and bid optimization grounded in Ad Rank signal analysis</li>
+          <li>Developed AEO content pipelines targeting AI search engines including Perplexity, ChatGPT, and Google SGE</li>
+          <li>Built HubSpot CRM workflows, lead scoring, and automation that eliminate manual handoffs between marketing and sales</li>
+          <li>SQL and Tableau analysis surfacing revenue patterns across ad platforms, CRM, and web analytics for executive reporting</li>
+        </ul>
+
         <ul class="expertise">
           {expertise.map(item => <li>{item}</li>)}
         </ul>
@@ -144,6 +187,75 @@ const expertise = [
     font-weight: 300;
   }
 
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 4px;
+  }
+
+  .philosophy-block {
+    padding: 18px 20px;
+    background: var(--gold-pale);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .phil-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .phil-tag {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .phil-body {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .proof-points {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .proof-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .proof-points li::before {
+    content: '';
+    width: 3px;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
   .expertise {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -175,6 +287,7 @@ const expertise = [
   @media (max-width: 768px) {
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
     .aside { position: static; }
+    .philosophy-grid { grid-template-columns: 1fr; }
     .expertise { grid-template-columns: 1fr; }
   }
 </style>

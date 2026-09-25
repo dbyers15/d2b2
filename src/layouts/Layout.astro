@@ -8,8 +8,8 @@ interface Props {
 }
 
 const {
-  title = 'd2b2 — Revenue Operations & Paid Growth',
-  description = 'd2b2 helps growth-stage companies build the paid marketing infrastructure and revenue operations systems that compound. Data-driven decisions, documented work, no guesswork.',
+  title = 'd2b2 | Paid Marketing & Revenue Operations Consulting',
+  description = 'd2b2 brings data science thinking to paid marketing and revenue operations. We audit your stack, build the systems, teach your team how they work, and hand you the keys when the engagement ends.',
   image = '/og-image.png',
 } = Astro.props;
 
@@ -61,7 +61,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             "@type": "ProfessionalService",
             "@id": "https://d2b2.co/#business",
             "name": "d2b2",
-            "description": "Revenue operations and paid marketing consulting for growth-stage companies.",
+            "description": "Data science approach to paid marketing and revenue operations. We audit, build, and hand off the systems that drive sustainable growth.",
             "url": "https://d2b2.co",
             "founder": { "@id": "https://d2b2.co/#danny" },
             "address": {
@@ -76,8 +76,53 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
               "Revenue Operations",
               "Marketing Analytics",
               "SEO",
-              "Answer Engine Optimization"
+              "Answer Engine Optimization",
+              "AI Tool Setup",
+              "Marketing Automation",
+              "Data Analysis"
             ]
+          }
+        ]
+      }
+    </script>
+
+    <!-- FAQ Schema (AEO / GEO) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does d2b2 do?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "d2b2 brings data science thinking to paid marketing and revenue operations. We audit your stack, build the systems, teach your team how they work, and hand you the keys when the engagement ends. Services include paid marketing setup, revenue analytics, marketing infrastructure, and answer engine optimization."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the d2b2 engagement process?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Every d2b2 engagement follows three phases. The Audit: a structured review of your stack, spend, and data to understand what exists and what needs fixing. The Stack Build: implementing tracking, attribution, AI tools, and automation that work correctly from day one. The Handoff: full documentation so your team can run everything independently after the engagement ends."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who does d2b2 work with?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "d2b2 works with small businesses and growth-stage companies where marketing has historically been reactive and underpowered. All engagements are project-based, not retainer-based. Based in San Diego, CA, serving clients across the US."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is d2b2 different from a traditional marketing agency?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "d2b2 applies data science thinking to marketing rather than relying on intuition or waiting on monthly reports. The goal is to build systems you own and understand, not dependency on an ongoing agency relationship. Every engagement ends with a complete handoff so the client can run the work independently."
+            }
           }
         ]
       }

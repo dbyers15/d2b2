@@ -168,6 +168,9 @@ Cloudflare: add one `<script>` tag in `Layout.astro` head — get the tag from C
 ### 7. Open Solo 401k (separate from site — deadline Dec 31, 2026)
 Fidelity Self-Employed 401k. Must open before year-end even if contributions come later.
 
+### 8. Create LinkedIn for d2b2
+Set up a LinkedIn company page for d2b2. Establishes professional presence, creates a backlink to d2b2.co, and is a common trust signal for prospective clients vetting a consultant.
+
 ---
 
 ## Key decisions already made (don't relitigate)

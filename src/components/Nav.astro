@@ -4,7 +4,15 @@
 
 <nav>
   <div class="nav-inner container">
-    <a href="/" class="nav-logo">d2b2</a>
+    <a href="/" class="nav-logo">
+      <svg class="logo-mark" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="0" y="0" width="9" height="9" fill="#CFAE70"/>
+        <rect x="11" y="0" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+        <rect x="0" y="11" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+        <rect x="11" y="11" width="9" height="9" fill="#CFAE70"/>
+      </svg>
+      d2b2
+    </a>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#approach">Approach</a></li>
@@ -43,7 +51,12 @@
     color: var(--gold);
     letter-spacing: 0.06em;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
+
+  .logo-mark { flex-shrink: 0; }
 
   .nav-links {
     display: flex;
@@ -64,6 +77,9 @@
   }
 
   .nav-links a:hover { color: var(--text); }
+
+  .nav-links .btn-primary { color: #FFFFFF; }
+  .nav-links .btn-primary:hover { color: #FFFFFF; }
 
   .nav-mobile-cta { display: none; }
 

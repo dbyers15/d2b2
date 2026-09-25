@@ -5,25 +5,25 @@ const services = [
   {
     id: '01 / PAID',
     title: 'Paid Marketing Setup & Optimization',
-    body: 'Full-funnel paid search and social infrastructure — account builds, campaign architecture, bidding strategy, and ongoing optimization grounded in attribution data.',
+    body: 'Full-funnel paid search and social built on real attribution data, not platform numbers. Account builds, campaign architecture, bidding strategy, and proactive optimization driven by what\'s actually converting.',
     tags: ['Google Ads', 'Meta Ads', 'Campaign Architecture', 'Attribution'],
   },
   {
     id: '02 / DATA',
     title: 'Revenue Analytics & Reporting',
-    body: 'SQL-driven analysis, custom dashboards, and performance reporting that tell you what\'s actually driving revenue — and what isn\'t. From ad spend to pipeline to close.',
+    body: 'SQL-driven analysis and custom reporting that give executives a clear view of what drives revenue and what wastes budget. Clean data and honest answers, not seasonal guesses.',
     tags: ['SQL', 'Dashboards', 'GA4', 'GTM'],
   },
   {
     id: '03 / OPS',
     title: 'Marketing Infrastructure',
-    body: 'Tracking implementation, CRM workflows, automation pipelines, and the connective tissue between your tools — built to scale and documented so it doesn\'t break.',
-    tags: ['HubSpot', 'Zapier', 'Tracking', 'Automation'],
+    body: 'Tracking implementation, CRM workflows, AI tool setup, and automation pipelines that connect your stack and reduce manual overhead. Built to scale, documented so your team can run it without coming back.',
+    tags: ['HubSpot', 'AI Tools', 'Tracking', 'Automation'],
   },
   {
     id: '04 / AEO',
     title: 'SEO & Answer Engine Optimization',
-    body: 'Content strategy and optimization built for how people actually find answers — including AI-powered search. Organic growth that compounds without the ad spend.',
+    body: 'Content strategy and optimization built for how people actually find answers, including AI search engines. Organic visibility that compounds long after the engagement ends.',
     tags: ['SEO', 'AEO / GEO', 'Content Strategy'],
   },
 ];
@@ -39,7 +39,15 @@ const services = [
     <div class="grid">
       {services.map(s => (
         <div class="card">
-          <span class="card-id">{s.id}</span>
+          <div class="card-id">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="0" y="0" width="9" height="9" fill="#CFAE70"/>
+              <rect x="11" y="0" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+              <rect x="0" y="11" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+              <rect x="11" y="11" width="9" height="9" fill="#CFAE70"/>
+            </svg>
+            <span>{s.id}</span>
+          </div>
           <h3>{s.title}</h3>
           <p>{s.body}</p>
           <div class="tags">
@@ -72,14 +80,13 @@ const services = [
   .card:hover { background: var(--surface); }
 
   .card-id {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-family: var(--font-mono);
     font-size: 0.62rem;
     letter-spacing: 0.1em;
     color: var(--gold);
-    border: 1px solid var(--border-strong);
-    padding: 4px 10px;
-    display: inline-block;
-    width: fit-content;
   }
 
   .card h3 {
