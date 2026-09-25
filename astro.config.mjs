@@ -7,7 +7,7 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   output: 'static',
-  site: 'https://d2b2.app', // update once domain is registered
+  site: 'https://d2b2.co',
   build: {
     assets: '_assets',
   },

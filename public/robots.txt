@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://d2b2.app/sitemap-index.xml
+Sitemap: https://d2b2.co/sitemap-index.xml
