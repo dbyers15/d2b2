@@ -1,0 +1,93 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = 'd2b2 — Revenue Operations & Paid Growth',
+  description = 'd2b2 helps growth-stage companies build the paid marketing infrastructure and revenue operations systems that compound. Data-driven decisions, documented work, no guesswork.',
+  image = '/og-image.png',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Primary Meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Danny Byers" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:site_name" content="d2b2" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.site)} />
+
+    <!-- Schema.org — Person + ProfessionalService (GEO/AEO) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://d2b2.app/#danny",
+            "name": "Danny Byers",
+            "jobTitle": "Revenue Operations & Paid Growth Consultant",
+            "url": "https://d2b2.app",
+            "sameAs": []
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://d2b2.app/#business",
+            "name": "d2b2",
+            "description": "Revenue operations and paid marketing consulting for growth-stage companies.",
+            "url": "https://d2b2.app",
+            "founder": { "@id": "https://d2b2.app/#danny" },
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "San Diego",
+              "addressRegion": "CA",
+              "addressCountry": "US"
+            },
+            "areaServed": "US",
+            "serviceType": [
+              "Paid Marketing",
+              "Revenue Operations",
+              "Marketing Analytics",
+              "SEO",
+              "Answer Engine Optimization"
+            ]
+          }
+        ]
+      }
+    </script>
+
+    <!-- Preconnect for Google Fonts (already imported in global.css) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

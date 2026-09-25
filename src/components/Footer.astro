@@ -1,0 +1,32 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="container">
+  <span class="logo">d2b2</span>
+  <span class="copy">© {year} Danny Byers. All rights reserved.</span>
+</footer>
+
+<style>
+  footer {
+    padding-block: 36px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .logo {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+  }
+
+  .copy {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+  }
+</style>

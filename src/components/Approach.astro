@@ -1,0 +1,88 @@
+---
+// Approach.astro
+
+const steps = [
+  {
+    num: '01',
+    title: 'Audit the current state',
+    body: 'Before building anything, understand what exists — what\'s working, what\'s wasting budget, and where the gaps are. Every engagement starts with a structured review of your stack, spend, and data.',
+  },
+  {
+    num: '02',
+    title: 'Build the foundation',
+    body: 'Tracking, attribution, and reporting have to work before paid spend scales. Infrastructure built right the first time doesn\'t create surprises six months later.',
+  },
+  {
+    num: '03',
+    title: 'Optimize on real signals',
+    body: 'Campaigns improve when decisions come from actual data, not intuition. Ongoing work is driven by what the numbers say — not what should theoretically work.',
+  },
+  {
+    num: '04',
+    title: 'Document and hand off cleanly',
+    body: 'Everything built gets documented. You own the work, understand how it operates, and can extend it without coming back for every small change.',
+  },
+];
+---
+
+<section id="approach">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Approach</span>
+      <h2>How the work gets done</h2>
+    </div>
+
+    <div class="steps">
+      {steps.map(s => (
+        <div class="step">
+          <div class="step-num">{s.num}</div>
+          <div class="step-content">
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .steps { display: flex; flex-direction: column; }
+
+  .step {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 28px;
+    padding-block: 36px;
+    border-top: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .step:last-child { border-bottom: 1px solid var(--border); }
+
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--border-strong);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .step-content h3 {
+    color: var(--text);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+
+  .step-content p {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  @media (max-width: 768px) {
+    .step { grid-template-columns: 48px 1fr; gap: 18px; }
+  }
+</style>

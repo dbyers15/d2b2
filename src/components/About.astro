@@ -1,0 +1,180 @@
+---
+// About.astro
+
+const expertise = [
+  'Google Ads',
+  'Meta Ads',
+  'SQL & Data Analysis',
+  'GA4 / GTM',
+  'HubSpot',
+  'Revenue Operations',
+  'AEO / GEO',
+  'Marketing Automation',
+];
+---
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+
+      <!-- Left: name card -->
+      <div class="aside">
+        <div>
+          <div class="name">Danny Byers</div>
+          <div class="title-label">Founder, d2b2</div>
+        </div>
+        <div class="divider"></div>
+        <div class="credentials">
+          <div class="cred">
+            <span class="cred-label">Based in</span>
+            <span class="cred-value">San Diego, CA</span>
+          </div>
+          <div class="cred">
+            <span class="cred-label">Education</span>
+            <span class="cred-value">St. John's College, 2018</span>
+          </div>
+          <div class="cred">
+            <span class="cred-label">Focus</span>
+            <span class="cred-value">RevOps &amp; Paid Growth</span>
+          </div>
+          <div class="cred">
+            <span class="cred-label">Availability</span>
+            <span class="cred-value">Project-based engagements</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: bio -->
+      <div class="bio">
+        <p>
+          d2b2 is the consulting practice of Danny Byers — a data scientist and
+          growth operator who works at the intersection of paid marketing, revenue
+          operations, and analytical infrastructure.
+        </p>
+        <p>
+          The work spans Google Ads, Meta, HubSpot, GA4/GTM, SQL data pipelines,
+          and AEO content strategy — usually in combination, because real growth
+          stacks don't stay in neat departmental boxes.
+        </p>
+        <p>
+          The name is a play on the work: D. Byers, databases, data-driven B2B.
+          The point is precision over guesswork, and systems that outlast the
+          engagement.
+        </p>
+        <ul class="expertise">
+          {expertise.map(item => <li>{item}</li>)}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .aside {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    position: sticky;
+    top: 80px;
+  }
+
+  .name {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+
+  .title-label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .divider {
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .credentials { display: flex; flex-direction: column; gap: 0; }
+
+  .cred {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 14px;
+  }
+
+  .cred-label {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .cred-value {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .bio {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .bio p {
+    color: var(--text-muted);
+    font-size: 0.925rem;
+    line-height: 1.85;
+    font-weight: 300;
+  }
+
+  .expertise {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 8px 0 0;
+    padding: 24px 0 0;
+    border-top: 1px solid var(--border);
+    list-style: none;
+  }
+
+  .expertise li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .expertise li::before {
+    content: '';
+    width: 3px;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .aside { position: static; }
+    .expertise { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,115 @@
+---
+// Hero.astro
+// Stats are placeholders — update with real figures before launch
+---
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag">
+      <span class="eyebrow">Revenue Operations &amp; Paid Growth</span>
+    </div>
+
+    <h1 class="hero-headline">
+      <span class="gold-gradient">Revenue</span><br />
+      engineered<br />
+      from the data up.
+    </h1>
+
+    <p class="hero-sub">
+      d2b2 helps growth-stage companies build the paid marketing
+      infrastructure and revenue operations systems that compound.
+      Data-driven decisions, documented work, no guesswork.
+    </p>
+
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Start a Conversation</a>
+      <a href="#services" class="btn-outline">See What I Do</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-value">3+</div>
+        <div class="stat-label">Years in RevOps &amp; Growth</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">4</div>
+        <div class="stat-label">Core Service Areas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">SD</div>
+        <div class="stat-label">San Diego, CA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: 112px 96px;
+    border-top: none;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-headline { margin-bottom: 28px; }
+
+  .hero-sub {
+    font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+    color: var(--text-muted);
+    max-width: 520px;
+    margin-bottom: 44px;
+    font-weight: 300;
+    line-height: 1.75;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 56px;
+    margin-top: 72px;
+    padding-top: 44px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding-block: 72px 60px; }
+    .hero-stats { gap: 28px; }
+  }
+</style>
