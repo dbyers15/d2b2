@@ -33,7 +33,7 @@
       </div>
 
       <!-- Form column -->
-      <form class="form" id="contact-form">
+      <form class="form" id="contact-form" action="https://formspree.io/f/mjykejjn" method="POST">
         <div class="field">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" placeholder="Your name" required />
@@ -58,26 +58,11 @@
           <textarea id="message" name="message" rows="5" placeholder="Brief description of what you need..." required></textarea>
         </div>
         <button type="submit" class="btn-primary submit-btn">Send Message</button>
-        <div class="success" id="form-success" hidden>
-          Message received. I'll be in touch within 24 hours.
-        </div>
       </form>
 
     </div>
   </div>
 </section>
-
-<script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const success = document.getElementById('form-success') as HTMLElement;
-
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    // TODO: swap this block for real form submission (Formspree / Pages Function)
-    success.hidden = false;
-    form.reset();
-  });
-</script>
 
 <style>
   .contact-grid {
