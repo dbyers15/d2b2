@@ -1,0 +1,259 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const publishDateStr = post.data.publishDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.publishDate.toISOString(),
+  author: {
+    '@type': 'Person',
+    '@id': 'https://d2b2.co/#danny',
+    name: 'Danny Byers',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'd2b2',
+    url: 'https://d2b2.co',
+  },
+};
+---
+
+<Layout title={`${post.data.title} | d2b2`} description={post.data.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} slot="head"></script>
+  <Nav />
+  <main>
+    <div class="post-wrap container">
+      <div class="post-header">
+        <a href="/blog" class="back-link">
+          <svg width="12" height="12" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <rect x="0" y="0" width="9" height="9" fill="#CFAE70"/>
+            <rect x="11" y="0" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+            <rect x="0" y="11" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+            <rect x="11" y="11" width="9" height="9" fill="#CFAE70"/>
+          </svg>
+          Insights
+        </a>
+        <div class="post-meta">
+          <time>{publishDateStr}</time>
+          {post.data.tags?.map(tag => <span class="tag">{tag}</span>)}
+        </div>
+        <h1>{post.data.title}</h1>
+        <p class="post-description">{post.data.description}</p>
+      </div>
+      <div class="post-content">
+        <Content />
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .post-wrap {
+    max-width: 740px;
+    margin-inline: auto;
+    padding-block: 60px 96px;
+  }
+
+  .post-header {
+    margin-bottom: 52px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+  }
+
+  .back-link:hover { opacity: 0.7; }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .post-meta time {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+  }
+
+  .tag {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .post-description {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+    border-left: 2px solid var(--gold);
+    padding-left: 18px;
+  }
+
+  /* Prose styles */
+  .post-content :global(h2) {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-top: 2.75rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .post-content :global(h3) {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--gold);
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .post-content :global(p) {
+    color: var(--text-muted);
+    font-size: 0.925rem;
+    line-height: 1.85;
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .post-content :global(ul),
+  .post-content :global(ol) {
+    color: var(--text-muted);
+    font-size: 0.925rem;
+    line-height: 1.85;
+    font-weight: 300;
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .post-content :global(li) {
+    margin-bottom: 0.35rem;
+  }
+
+  .post-content :global(strong) {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .post-content :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    background: var(--surface);
+    color: var(--gold);
+    padding: 2px 6px;
+    border: 1px solid var(--border);
+  }
+
+  .post-content :global(pre) {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    overflow-x: auto;
+    margin-block: 1.5rem;
+  }
+
+  .post-content :global(pre code) {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .post-content :global(hr) {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin-block: 2.5rem;
+  }
+
+  .post-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    margin-block: 1.5rem;
+  }
+
+  .post-content :global(th) {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid var(--border-strong);
+  }
+
+  .post-content :global(td) {
+    padding: 10px 14px;
+    color: var(--text-muted);
+    font-weight: 300;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.5;
+  }
+
+  .post-content :global(a) {
+    color: var(--gold);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--gold) 40%, transparent);
+    transition: text-decoration-color 0.2s;
+  }
+
+  .post-content :global(a:hover) {
+    text-decoration-color: var(--gold);
+  }
+
+  @media (max-width: 768px) {
+    .post-wrap { padding-block: 40px 72px; }
+  }
+</style>

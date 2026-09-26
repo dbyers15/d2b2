@@ -131,6 +131,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <!-- Preconnect for Google Fonts (already imported in global.css) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <slot name="head" />
   </head>
   <body>
     <slot />
