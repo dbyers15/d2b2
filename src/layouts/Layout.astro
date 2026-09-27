@@ -55,7 +55,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             "name": "Danny Byers",
             "jobTitle": "Revenue Operations & Paid Growth Consultant",
             "url": "https://d2b2.co",
-            "sameAs": []
+            "sameAs": ["https://www.linkedin.com/company/d2b2co"]
           },
           {
             "@type": "ProfessionalService",
@@ -132,6 +132,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <slot name="head" />
+    <!-- Cloudflare Web Analytics -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "PASTE_CF_ANALYTICS_TOKEN_HERE"}'></script>
   </head>
   <body>
     <slot />
