@@ -1,8 +1,7 @@
 ---
-// Nav.astro — sticky, blurred, collapses on mobile
 ---
 
-<nav>
+<nav id="main-nav">
   <div class="nav-inner container">
     <a href="/" class="nav-logo">
       <svg class="logo-mark" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -13,17 +12,39 @@
       </svg>
       d2b2
     </a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links">
       <li><a href="/#services">Services</a></li>
       <li><a href="/#approach">Approach</a></li>
       <li><a href="/#about">About</a></li>
       <li><a href="/blog">Insights</a></li>
       <li><a href="/#contact" class="btn-primary">Work Together</a></li>
     </ul>
-    <!-- Mobile CTA only -->
-    <a href="/#contact" class="nav-mobile-cta btn-primary">Talk</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
   </div>
 </nav>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  const toggle = document.getElementById('nav-toggle');
+
+  toggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+  });
+
+  document.querySelectorAll('#nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('nav-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation');
+    });
+  });
+</script>
 
 <style>
   nav {
@@ -78,14 +99,77 @@
   }
 
   .nav-links a:hover { color: var(--text); }
-
   .nav-links .btn-primary { color: #FFFFFF; }
   .nav-links .btn-primary:hover { color: #FFFFFF; }
 
-  .nav-mobile-cta { display: none; }
+  /* Hamburger */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    margin-right: -8px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .bar {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--gold);
+    transition: transform 0.25s, opacity 0.25s;
+    transform-origin: center;
+  }
+
+  nav.nav-open .bar:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  nav.nav-open .bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  nav.nav-open .bar:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
   @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .nav-mobile-cta { display: inline-block; }
+    nav { padding-block: 14px; }
+
+    .nav-toggle { display: flex; }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: rgba(24, 24, 24, 0.98);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 8px var(--gutter) 28px;
+    }
+
+    nav.nav-open .nav-links { display: flex; }
+
+    .nav-links a {
+      display: block;
+      padding: 16px 0;
+      font-size: 0.95rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .nav-links li:last-child a {
+      border-bottom: none;
+      margin-top: 16px;
+    }
+
+    .nav-links .btn-primary {
+      display: inline-block;
+      padding: 12px 24px;
+      width: auto;
+    }
   }
 </style>

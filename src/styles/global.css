@@ -156,4 +156,6 @@ section {
 @media (max-width: 768px) {
   :root { --gutter: 16px; }
   section { padding-block: 64px; }
+  .section-header { margin-bottom: 36px; }
+  .btn-primary, .btn-outline { padding: 12px 22px; }
 }
