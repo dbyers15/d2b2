@@ -34,7 +34,6 @@
 
       <!-- Form column -->
       <form class="form" id="contact-form" action="https://formspree.io/f/mjykejjn" method="POST">
-        <input type="hidden" name="_next" value="https://d2b2.co/thank-you" />
         <div class="field">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" placeholder="Your name" required />
@@ -58,8 +57,33 @@
           <label for="message">What you're working on</label>
           <textarea id="message" name="message" rows="5" placeholder="Brief description of what you need..." required></textarea>
         </div>
-        <button type="submit" class="btn-primary submit-btn">Send Message</button>
+        <button type="submit" class="btn-primary submit-btn" id="submit-btn">Send Message</button>
       </form>
+
+      <script>
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const btn = document.getElementById('submit-btn');
+          btn.textContent = 'Sending...';
+          btn.disabled = true;
+          try {
+            const res = await fetch(e.target.action, {
+              method: 'POST',
+              body: new FormData(e.target),
+              headers: { 'Accept': 'application/json' }
+            });
+            if (res.ok) {
+              window.location.href = '/thank-you';
+            } else {
+              btn.textContent = 'Something went wrong. Try again.';
+              btn.disabled = false;
+            }
+          } catch {
+            btn.textContent = 'Something went wrong. Try again.';
+            btn.disabled = false;
+          }
+        });
+      </script>
 
     </div>
   </div>
