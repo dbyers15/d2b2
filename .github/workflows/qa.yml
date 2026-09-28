@@ -85,11 +85,12 @@ jobs:
             --assertions.categories:best-practices=["warn",{"minScore":0.85}]
 
       # ── 6. Link check ─────────────────────────────────────────────────────
+      # Bot-blocking domains (linkedin, twitter/x) are skipped — they return
+      # 429/999 for automated requests even when the link is valid.
       - name: Link check
         run: |
           npx linkinator http://localhost:4321/ \
             --recurse \
-            --skip "fonts\.googleapis\.com|fonts\.gstatic\.com|schema\.org|w3\.org" \
+            --skip "fonts\.googleapis\.com|fonts\.gstatic\.com|schema\.org|w3\.org|linkedin\.com|twitter\.com|x\.com" \
             --timeout 10000 \
             --verbosity error
-        continue-on-error: true
