@@ -5,7 +5,7 @@
 <section class="hero">
   <div class="container">
     <div class="hero-tag">
-      <span class="eyebrow">Revenue Operations &amp; Paid Growth</span>
+      <span class="eyebrow">Solutions Engineering &amp; Revenue Operations</span>
     </div>
 
     <h1 class="hero-headline">
@@ -15,9 +15,10 @@
     </h1>
 
     <p class="hero-sub">
-      Marketing isn't a guessing game when it's built on real data. d2b2 applies
-      data science thinking to paid growth and revenue operations. We build the
-      systems, analyze the signals, and hand you the keys when the work is done.
+      Most inefficiencies are hiding in the data. d2b2 finds them, builds the
+      integrations and automation to fix them, and hands over clean reporting
+      so your team stays proactive long after the engagement ends. Paid
+      marketing is one branch of the work.
     </p>
 
     <div class="hero-ctas">
@@ -25,18 +26,22 @@
       <a href="#services" class="btn-outline">See What I Do</a>
     </div>
 
+    <div class="hero-credential">
+      <span>Vanderbilt University, M.S. Data Science</span>
+    </div>
+
     <div class="hero-stats">
       <div class="stat">
+        <div class="stat-value">$2M+</div>
+        <div class="stat-label">Revenue Under Management</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">10+</div>
+        <div class="stat-label">End-to-End Integrations Built</div>
+      </div>
+      <div class="stat">
         <div class="stat-value">4+</div>
-        <div class="stat-label">Years in RevOps &amp; Growth</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">4</div>
-        <div class="stat-label">Core Service Areas</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">$1M+</div>
-        <div class="stat-label">Ad Spend Managed</div>
+        <div class="stat-label">Years in Business Systems</div>
       </div>
     </div>
   </div>
@@ -79,6 +84,29 @@
     gap: 14px;
     flex-wrap: wrap;
     align-items: center;
+  }
+
+  .hero-credential {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .hero-credential::before {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .hero-credential span {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
   }
 
   .hero-stats {
