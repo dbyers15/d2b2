@@ -3,13 +3,22 @@ title: "Why Your PMAX Campaigns Aren't Converting (And What to Fix)"
 description: "Performance Max campaigns underperform when they don't have the right inputs. Here's what actually drives PMAX results and where to look when they aren't working."
 publishDate: 2026-09-05
 tags: ["Google Ads", "PMAX", "Paid Marketing"]
+faq:
+  - q: "Why are my Performance Max campaigns not converting?"
+    a: "PMAX underperforms most often because of poor-quality assets, misconfigured conversion tracking, or asset groups that mix too many themes. The algorithm needs accurate conversion data to optimize toward, high-quality creative to assemble into ads, and thematically tight asset groups to infer the right audience. Missing any one of these will limit results."
+  - q: "How many assets does a PMAX campaign need to perform well?"
+    a: "Aim for Excellent asset strength: 15 distinct headlines, 5 descriptions at full character count, multiple high-quality images in all required aspect ratios, and at least one video. If you don't provide a video, Google generates one from your images — and it will not represent your brand well. Asset strength ratings of Poor or Good are a reliable signal that the campaign needs more creative investment."
+  - q: "How long does it take for PMAX to start converting?"
+    a: "Allow 6 to 8 weeks for PMAX to exit its learning period and produce stable results. During this time, performance will fluctuate as the algorithm builds conversion data. However, if a campaign has been running for 8 weeks with low impressions and near-zero conversions, something structural is wrong — typically budget constraints, overly narrow targeting signals, or conversion tracking that isn't firing."
+  - q: "How do I see what's working inside a PMAX campaign?"
+    a: "Use the Insights tab in your PMAX campaign. It shows which audience segments, search themes, and creative assets are driving results. Look for search themes that are converting (consider adding them to standard Search campaigns for more control), asset performance ratings (replace Poor-rated assets immediately), and audience segments that are performing unexpectedly well or poorly."
 ---
 
-Performance Max campaigns promise a lot: one campaign, all of Google's inventory, machine learning doing the optimization. In practice, PMAX underperforms for a lot of advertisers, not because the product is broken, but because it requires better inputs than most accounts provide.
+Performance Max campaigns promise a lot: one campaign, all of Google's inventory, machine learning doing the optimization. In practice, PMAX underperforms for a lot of advertisers — not because the product is broken, but because it requires better inputs than most accounts provide.
 
 If your PMAX campaigns aren't converting at the rates you expected, here's where to look.
 
-## Ad Rank is still the lever
+## Why does Ad Rank matter for PMAX campaigns?
 
 A common misconception is that PMAX replaces the auction. It doesn't. PMAX still competes in auctions across Search, Display, YouTube, Gmail, and Discover, and Ad Rank still determines when and where your ads show.
 
@@ -17,7 +26,7 @@ Ad Rank is a function of bid, Quality Score, expected CTR, ad relevance, landing
 
 The practical implication: asset quality matters more in PMAX than in standard campaigns because your assets are what Google uses to assemble ads across formats. Poor assets mean poor expected CTR, which means poor Ad Rank.
 
-## Check your asset groups
+## What makes a strong PMAX asset group?
 
 Asset groups are where most PMAX problems originate. Each asset group should be:
 
@@ -27,15 +36,15 @@ Asset groups are where most PMAX problems originate. Each asset group should be:
 
 **Aligned to a specific audience signal.** Audience signals don't restrict who sees your ads, but they give the algorithm a starting point. Use your customer list, website visitors, or in-market segments that match the product or service in the asset group.
 
-## Conversion tracking must be accurate
+## How does conversion tracking affect PMAX performance?
 
-PMAX is aggressive about optimizing toward its conversion targets. If your conversion tracking counts low-quality signals, such as contact page visits, time on site, or soft engagements, as primary conversions, PMAX will optimize toward those instead of actual business outcomes.
+PMAX is aggressive about optimizing toward its conversion targets. If your conversion tracking counts low-quality signals — such as contact page visits, time on site, or soft engagements — as primary conversions, PMAX will optimize toward those instead of actual business outcomes.
 
 Audit what's set as a primary conversion action before running PMAX. In most cases, primary conversions should be things with clear revenue implications: form submissions from qualified leads, phone calls over a certain duration, actual purchases.
 
-If you have both lead form conversions and purchase conversions, consider separate campaigns with different optimization goals.
+If you have both lead form conversions and purchase conversions, consider separate campaigns with different optimization goals. For the full picture on conversion tracking setup, start with a [Google Ads account audit](/blog/google-ads-audit) — conversion tracking is always the first thing to verify.
 
-## Give it time, but with a floor
+## How long should you wait for PMAX to start converting?
 
 PMAX needs a learning period, typically 6 to 8 weeks with sufficient conversion volume. During this period, performance will fluctuate as the algorithm builds frequency and conversion data.
 
@@ -43,7 +52,7 @@ However, "give it time" has limits. If a campaign has been running for 8 weeks w
 
 A reasonable threshold: if PMAX hasn't produced 20 or more conversions in the first 6 weeks, pause it and review the inputs before restarting.
 
-## Check the Insights tab
+## How do you see what's working inside a PMAX campaign?
 
 The Insights tab in PMAX shows which audience segments, search themes, and creative assets are driving results. This is one of the few places PMAX gives you visibility into what's actually happening.
 
@@ -52,9 +61,7 @@ Look for:
 - Asset performance ratings (replace Poor-rated assets immediately)
 - Audience segments that are performing unexpectedly well or poorly
 
-## The bigger picture
-
-PMAX performs best when you give it good data, good assets, and a realistic conversion target. The algorithm is powerful, but it's not a replacement for strategy. Accounts that see PMAX fail usually haven't invested in the inputs.
+PMAX performs best when you give it good data, good assets, and a realistic conversion target. The algorithm is powerful, but it's not a replacement for strategy. Once PMAX is generating conversions, verify that the revenue it's reporting reflects [what you're actually seeing in closed revenue](/blog/google-ads-roas-truth) — platform attribution tends to be particularly optimistic for broad-inventory campaign types like PMAX.
 
 ---
 

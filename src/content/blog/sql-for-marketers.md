@@ -3,13 +3,22 @@ title: "SQL for Marketers: Five Queries Every Growth Team Should Know"
 description: "SQL lets marketers get answers from their data without waiting on an analyst. Here are five practical queries that answer the questions marketing teams ask most."
 publishDate: 2026-09-24
 tags: ["SQL", "Analytics", "Data Analysis"]
+faq:
+  - q: "Can marketers learn SQL?"
+    a: "Yes. Marketers don't need advanced SQL to get value from it. The core operations — SELECT, FROM, WHERE, GROUP BY, and ORDER BY — are enough to answer most marketing questions. The skill isn't writing complex queries; it's knowing what question to ask and how to translate it into those simple operations."
+  - q: "What SQL queries are most useful for marketing teams?"
+    a: "The most valuable SQL queries for marketers are: lead count by source this month, close rate by lead source, revenue by source, average time to close by source, and lead volume trend by month. These five queries answer the questions marketing teams ask most and can't easily get from standard analytics dashboards."
+  - q: "How do I find which marketing channels produce the most revenue using SQL?"
+    a: "Query your leads or deals table for records with status = 'closed_won', group by source, and sum the deal_value field. This gives you total revenue by channel — not just lead volume or close rate, but actual dollars. Combining this with a count of deals closed gives you average deal value by channel, which is often more strategically useful than volume alone."
+  - q: "What database tools can marketers use to run SQL?"
+    a: "Common options include BigQuery (Google Cloud, free for moderate usage and connects to GA4 data exports), Redshift or Snowflake (enterprise data warehouses), direct SQL access through HubSpot or Salesforce, and tools like Metabase or Looker Studio that provide friendlier SQL interfaces to connected data sources."
 ---
 
 Most marketing decisions involve questions that your analytics dashboards almost answer. You can see how many leads you generated, but not which campaigns produced leads that actually closed. You can see traffic by channel, but not average order value by channel. The extra step to get from "almost" to "actually" is usually a SQL query.
 
 SQL isn't hard to learn at the level marketers need. Here are five queries that answer common marketing questions.
 
-## Before you start: connect to your data
+## How do marketers connect to a database to run SQL?
 
 You need access to a database or data warehouse to run SQL. Common setups for marketing teams:
 
@@ -50,7 +59,7 @@ GROUP BY source
 ORDER BY close_rate_pct DESC;
 ```
 
-This is one of the most important queries for marketing teams. A channel with a high lead count but low close rate is generating unqualified leads. A channel with a low lead count but high close rate may deserve more budget.
+This is one of the most important queries for marketing teams. A channel with a high lead count but low close rate is generating unqualified leads. A channel with a low lead count but high close rate may deserve more budget. This is also the query that reveals when [platform-reported ROAS is disconnected from actual revenue](/blog/google-ads-roas-truth) — lead quality differences by source won't show up in Google's dashboard.
 
 ## Query 3: Revenue by source
 
@@ -66,7 +75,7 @@ GROUP BY source
 ORDER BY total_revenue DESC;
 ```
 
-This shows actual revenue contribution by channel, not just lead volume or even close rate, but dollars. A channel that drives high-value deals is worth more than its lead count suggests.
+This shows actual revenue contribution by channel — not just lead volume or even close rate, but dollars. A channel that drives high-value deals is worth more than its lead count suggests.
 
 ## Query 4: Average time to close by source
 
@@ -100,11 +109,13 @@ ORDER BY month, leads DESC;
 
 This produces a month-by-month breakdown of leads by source for the last six months. When exported to a spreadsheet or visualization tool, it makes trends visible: which channels are growing, which are declining, and whether overall volume is tracking in the right direction.
 
-## Getting more out of SQL
+## How do you get more from SQL as a marketer?
 
 These five queries assume a simple data model. Real marketing databases are usually more complex: leads join to accounts, accounts join to deals, deals join to revenue line items. But the logic is the same. Define what you're counting, group by the dimension you care about, filter for the time period you want.
 
-The highest-value SQL skill for marketers isn't writing complex queries. It's knowing what question to ask and how to translate it into the simple operations of SELECT, FROM, WHERE, and GROUP BY.
+The highest-value SQL skill for marketers isn't writing complex queries. It's knowing what question to ask and how to translate it into the simple operations of SELECT, FROM, WHERE, and GROUP BY. Once you can pull these answers yourself, you can start connecting them to [attribution models](/blog/marketing-attribution) — knowing not just which channel drove a lead, but which channel drove the leads that actually closed.
+
+For structuring the data these queries run against, a [properly configured RevOps stack](/blog/what-is-revops) is what makes this kind of analysis reliable rather than a one-off exercise.
 
 ---
 

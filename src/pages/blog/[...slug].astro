@@ -38,10 +38,21 @@ const articleSchema = {
     url: 'https://d2b2.co',
   },
 };
+
+const faqSchema = post.data.faq?.length ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: post.data.faq.map(item => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+} : null;
 ---
 
 <Layout title={`${post.data.title} | d2b2`} description={post.data.description}>
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} slot="head"></script>
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head"></script>}
   <Nav />
   <main>
     <div class="post-wrap container">

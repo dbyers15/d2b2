@@ -3,13 +3,22 @@ title: "Cross-Domain Tracking in GTM: How to Track Users Across Multiple Domains
 description: "When users move between domains, GA4 loses them by default. Here's how to implement cross-domain tracking in Google Tag Manager so you see the full user journey."
 publishDate: 2026-09-08
 tags: ["GTM", "GA4", "Tracking", "Analytics"]
+faq:
+  - q: "What is cross-domain tracking in GA4?"
+    a: "Cross-domain tracking is the configuration that lets GA4 follow a user across two or more separate domains as a single session. Without it, GA4 starts a new session and assigns a new user ID each time someone moves between domains, breaking your funnel data and misattributing conversions."
+  - q: "Why does GA4 lose users when they move between domains?"
+    a: "GA4 stores its user identifier in a first-party cookie scoped to a single domain. When a user navigates from domain A to domain B, the cookie from domain A doesn't transfer. Domain B sets its own cookie and treats the visitor as a new, unrecognized user — breaking the session and losing attribution context."
+  - q: "How do I set up cross-domain tracking in Google Tag Manager?"
+    a: "In your GA4 Configuration tag in GTM, add the linker.accept_incoming field set to true, then list all linked domains under More Settings > Cross-Domain. After publishing, verify by clicking across domain boundaries and checking that the _gl parameter appears in the destination URL and that GA4 DebugView shows a continuing session rather than a new one."
+  - q: "What is the _gl parameter in Google Analytics?"
+    a: "The _gl parameter is a temporary URL parameter that GA4 appends to outbound links when cross-domain tracking is configured. It encodes the user's client ID so the destination domain can read it on arrival and continue the same session, rather than starting a new one."
 ---
 
-If your business runs across multiple domains, such as a main site, a booking subdomain, a landing page domain, or a checkout provider, you're almost certainly losing data at every domain transition. By default, GA4 treats each domain as a separate session and a separate user. That means your funnel has invisible breaks in it, and your attribution data is wrong.
+If your business runs across multiple domains — a main site, a booking subdomain, a landing page domain, or a checkout provider — you're almost certainly losing data at every domain transition. By default, GA4 treats each domain as a separate session and a separate user. That means your funnel has invisible breaks in it, and your attribution data is wrong.
 
 Cross-domain tracking fixes this by passing the user's session identifier across domain boundaries, letting GA4 stitch the journey together.
 
-## How cross-domain measurement works in GA4
+## How does cross-domain measurement work in GA4?
 
 GA4 uses a client ID stored in a first-party cookie to identify users across sessions. When a user moves between domains, this client ID doesn't travel with them by default. Each domain sets its own cookie and starts a new session.
 
@@ -17,7 +26,7 @@ Cross-domain tracking works by appending a temporary `_gl` parameter to links be
 
 The key requirement: both domains must have GA4 tags installed and the `_gl` parameter must be read by the destination domain before the session starts.
 
-## Setting it up in GTM
+## How do you set up cross-domain tracking in GTM?
 
 ### Step 1: Update your GA4 Configuration tag
 
@@ -37,13 +46,13 @@ After publishing your GTM container:
 2. Check the URL for the `_gl=` parameter in the query string
 3. On the destination domain, open DebugView in GA4 (Admin > DebugView) and verify that the session is being recognized as a continuation rather than a new session
 
-A new session on the destination domain means the parameter isn't being read correctly. Common causes: the GA4 tag fires before the `_gl` parameter is processed, or the tag is not present on the first page load of the destination domain.
+A new session on the destination domain means the parameter isn't being read correctly. Common causes: the GA4 tag fires before the `_gl` parameter is processed, or the tag is not present on the first page load of the destination domain. If conversion tracking isn't working even after cross-domain is configured, a [full GA4 setup review](/blog/ga4-small-business-setup) is usually the fastest way to find what else is misconfigured.
 
 ### Step 4: Check for referral exclusions
 
 If the source domain appears as a referral source in your reports, it means cross-domain tracking isn't working correctly. Add the source domain to your referral exclusion list in GA4: Admin > Data Streams > your stream > More tagging settings > List unwanted referrals.
 
-## Common mistakes
+## What are the most common cross-domain tracking mistakes?
 
 **Only configuring one side.** Cross-domain configuration needs to be set on every domain in the chain, not just the originating domain.
 
@@ -53,14 +62,14 @@ If the source domain appears as a referral source in your reports, it means cros
 
 **Using different Measurement IDs.** Cross-domain tracking only works if the same Measurement ID (G-XXXXXXX) is used on both domains. If you use separate GA4 properties, you can't stitch sessions.
 
-## When it's working
+## How do you know when cross-domain tracking is working?
 
 When cross-domain tracking is set up correctly:
 - Traffic from your main domain won't appear as "referral" in reports from the secondary domain
 - User journeys that cross domain boundaries will show as single sessions
 - Conversion attribution will correctly credit the original source, not the domain transition
 
-This matters most when your checkout or booking flow lives on a different domain. Without cross-domain tracking, you're likely misattributing a significant portion of your conversions.
+This matters most when your checkout or booking flow lives on a different domain. Without cross-domain tracking, you're likely misattributing a significant portion of your conversions. For a broader review of how this fits into your [Google Ads account health](/blog/google-ads-audit), start with conversion tracking verification — cross-domain issues are one of the most common causes of broken attribution.
 
 ---
 

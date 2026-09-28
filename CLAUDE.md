@@ -195,6 +195,35 @@ Set up a LinkedIn company page for d2b2. Establishes professional presence, crea
 
 ---
 
+## Blog post conventions (required for every new article)
+
+Every post in `src/content/blog/` must include:
+
+1. **`faq:` frontmatter** — 3–4 Q&As per post. Questions should be the exact phrasing a user would type into a search bar or AI engine. Answers should be 1–3 direct sentences without hedging. These emit FAQ JSON-LD schema automatically via the template.
+
+2. **Question-format H2 headings** — Every H2 should be phrased as a question the reader is actually asking (e.g. "Which attribution model should I use?" not "Choosing an attribution model"). H3s can stay as descriptive labels.
+
+3. **Internal links** — Every post should link to 1–2 related posts within the body content, in context (not as a "see also" list). Use the post slug: `/blog/slug-name`.
+
+4. **CTA at the end** — Every post ends with a sentence linking to `/#contact`. Keep it short, specific to the post topic.
+
+5. **`publishDate:`** — Required. Format: `YYYY-MM-DD`.
+
+Example frontmatter:
+```yaml
+---
+title: "..."
+description: "..."
+publishDate: 2026-10-01
+tags: ["Tag1", "Tag2"]
+faq:
+  - q: "What is X?"
+    a: "X is..."
+  - q: "How do I do Y?"
+    a: "To do Y, you should..."
+---
+```
+
 ## Constraints
 
 - Before overwriting any existing file, show what will change and wait for confirmation
