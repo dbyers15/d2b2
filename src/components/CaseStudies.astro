@@ -1,0 +1,203 @@
+---
+const studies = [
+  {
+    id: '01',
+    category: 'Tracking / GTM',
+    headline: '14 conversion events recovered across a two-domain funnel',
+    context: 'Automotive marketplace',
+    problem: 'Their GTM setup covered one domain. The actual offer funnel ran on a second domain that was invisible to every ad platform. The component framework was silently dropping click events that conversion triggers depended on.',
+    solution: 'Rebuilt the GTM container with cross-domain linker configuration. Rewrote click triggers to use CSS selector matching instead of element IDs, which the framework regenerates on each render. Extended tag coverage across Google Ads, Microsoft UET, and GA4.',
+    outcome: '14 conversion event types confirmed firing across both domains. Attribution from first ad click to offer accepted, end to end.',
+  },
+  {
+    id: '02',
+    category: 'Revenue Analytics',
+    headline: 'True ROAS came in at 0.56. The platform said it was fine.',
+    context: 'Growth-stage marketplace',
+    problem: 'Paid search performance looked acceptable inside Google Ads. There was no system connecting ad spend to the internal sales database. Platform-modeled conversions and actual closed revenue were two different numbers.',
+    solution: 'Python pipeline connecting the Google Ads API to an internal MySQL database. Monthly reconciliation layer that mapped campaign spend to actual transactions, verified against internal revenue reporting rather than platform conversion values.',
+    outcome: 'True ROAS on the key campaign measured at 0.56. Lead-to-buy rate of 5%+ confirmed strong targeting. The problem was cost per acquisition, not campaign quality. Informed a campaign restructure and bid strategy change.',
+  },
+  {
+    id: '03',
+    category: 'AEO / Custom Integration',
+    headline: 'Monitoring system for brand presence across five AI search engines',
+    context: 'B2B SaaS',
+    problem: 'No tool existed to track how the brand appeared in answers from ChatGPT, Perplexity, Gemini, AI Overviews, and Copilot. Traditional SEO rank tracking was blind to AI search entirely.',
+    solution: 'Direct integration with an early-access answer engine API. A five-surface tracking dashboard comparing citation rates, response quality, and content gaps across engines, with weekly automated reporting built into the existing reporting stack.',
+    outcome: 'Identified which content formats were being cited by AI engines and which were being ignored entirely. Content strategy adjusted based on actual AI response behavior.',
+  },
+  {
+    id: '04',
+    category: 'Data Pipeline / Product Build',
+    headline: 'A pitch tool that showed dealers their own market data in real time',
+    context: 'Automotive marketplace',
+    problem: 'A field sales team was pitching dealers with static slides. No way to show a specific dealer what their local market actually looked like, and no reliable internet connection in dealer meetings.',
+    solution: 'Python pipeline against a production MySQL database, geographic modeling using haversine radius and DMA crosswalk to scope market data to each dealer\'s footprint, and a service-worker-enabled microsite that cached real market data for offline use on an iPad.',
+    outcome: 'Sales team could demonstrate live, location-specific market data in a dealer meeting with no internet required. Data updated daily from the production database.',
+  },
+  {
+    id: '05',
+    category: 'CRM Automation / Zapier',
+    headline: 'Automated lead filtering that tags and routes without anyone in the loop',
+    context: 'B2B services company',
+    problem: 'Lead routing and follow-up rules inside Front depended on tags that were being managed manually. The tags drifted as underlying lead data changed, which meant automation rules fired on stale segments. The team had no reliable way to keep tags reconciled against what was actually in the database.',
+    solution: 'Built a four-system pipeline: SQL queries in PopSQL pull the filtered lead data and stream results to a Google Sheet. Zapier watches the sheet on a daily schedule and evaluates each row against the business logic. For each lead, Zapier checks whether the relevant tag already exists in Front, sets it if the condition is met, and removes it when the condition is no longer true. Front\'s own rules engine then fires assignment, routing, and follow-up automation off those tags.',
+    outcome: 'Agent buy rates increased 10% across the board. Better routing and timely follow-up, driven by accurate segmentation, added $15K in monthly revenue.',
+  },
+];
+---
+
+<section id="work">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Work</span>
+      <h2>How the work actually looks</h2>
+    </div>
+
+    <div class="grid">
+      {studies.map(s => (
+        <div class="card">
+          <div class="card-meta">
+            <span class="card-num">Case {s.id}</span>
+            <span class="category">{s.category}</span>
+          </div>
+          <h3>{s.headline}</h3>
+          <div class="context-label">{s.context}</div>
+          <div class="sections">
+            <div class="block">
+              <div class="block-label">The problem</div>
+              <p>{s.problem}</p>
+            </div>
+            <div class="block">
+              <div class="block-label">The work</div>
+              <p>{s.solution}</p>
+            </div>
+            <div class="outcome">
+              <div class="outcome-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0" y="0" width="9" height="9" fill="#CFAE70"/>
+                  <rect x="11" y="0" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+                  <rect x="0" y="11" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+                  <rect x="11" y="11" width="9" height="9" fill="#CFAE70"/>
+                </svg>
+              </div>
+              <p>{s.outcome}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .card {
+    background: var(--bg);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: background 0.2s;
+  }
+
+  .card:hover { background: var(--surface); }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .card-num {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+  }
+
+  .category {
+    font-size: 0.68rem;
+    color: var(--gold);
+    border: 1px solid rgba(207, 174, 112, 0.3);
+    padding: 3px 9px;
+    letter-spacing: 0.04em;
+    font-weight: 400;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+    color: var(--text);
+    line-height: 1.45;
+    font-weight: 500;
+  }
+
+  .context-label {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .sections {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+  }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .block-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .block p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  .outcome {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .outcome-icon { flex-shrink: 0; margin-top: 3px; }
+
+  .outcome p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; }
+    .card { padding: 28px; }
+  }
+</style>
