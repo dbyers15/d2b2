@@ -42,7 +42,7 @@ const studies = [
     headline: 'Automated lead filtering that tags and routes without anyone in the loop',
     context: 'B2B services company',
     problem: 'Lead routing and follow-up rules inside Front depended on tags that were being managed manually. The tags drifted as underlying lead data changed, which meant automation rules fired on stale segments. The team had no reliable way to keep tags reconciled against what was actually in the database.',
-    solution: 'Built a four-system pipeline: SQL queries in PopSQL pull the filtered lead data and stream results to a Google Sheet. Zapier watches the sheet on a daily schedule and evaluates each row against the business logic. For each lead, Zapier checks whether the relevant tag already exists in Front, sets it if the condition is met, and removes it when the condition is no longer true. Front\'s own rules engine then fires assignment, routing, and follow-up automation off those tags.',
+    solution: 'Built a pipeline that pulls filtered lead data from the warehouse on a daily schedule, evaluates each record against the business logic, then checks whether the relevant tag already exists on that contact in the CRM, sets it if the condition is met, and removes it when it\'s no longer true. The CRM\'s own rules engine then fires assignment, routing, and follow-up sequences off those tags automatically.',
     outcome: 'Agent buy rates increased 10% across the board. Better routing and timely follow-up, driven by accurate segmentation, added $15K in monthly revenue.',
   },
 ];
