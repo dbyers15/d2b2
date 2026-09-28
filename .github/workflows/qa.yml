@@ -1,0 +1,95 @@
+name: QA
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  qa:
+    name: Build & QA
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install
+        run: npm ci
+
+      # ── 1. Build ──────────────────────────────────────────────────────────
+      - name: Build
+        run: npm run build
+
+      # ── 2. Dist audit (no server needed) ─────────────────────────────────
+      - name: Dist audit
+        run: |
+          echo "--- Required files ---"
+          for f in index.html sitemap.xml robots.txt og-image.png; do
+            if [ -f "dist/$f" ]; then
+              echo "✓ $f"
+            else
+              echo "✗ $f missing from dist/" && exit 1
+            fi
+          done
+
+          echo "--- Meta tags in index.html ---"
+          for tag in 'property="og:title"' 'property="og:description"' 'property="og:image"' 'application/ld+json' 'name="description"'; do
+            if grep -q "$tag" dist/index.html; then
+              echo "✓ $tag"
+            else
+              echo "✗ $tag not found in index.html" && exit 1
+            fi
+          done
+
+          echo "--- Image size check ---"
+          find dist -name '*.jpg' -o -name '*.png' | while read -r f; do
+            size=$(stat -c%s "$f")
+            if [ "$size" -gt 1048576 ]; then
+              echo "WARN: $f is $(( size / 1024 ))KB — consider optimizing"
+            fi
+          done
+
+          echo "All dist checks passed"
+
+      # ── 3. Start preview server ───────────────────────────────────────────
+      - name: Start preview
+        run: npx astro preview --port 4321 &
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:4321 --timeout 30000
+
+      # ── 4. Lighthouse (mobile — primary, what Google uses) ────────────────
+      - name: Lighthouse — mobile
+        run: npx @lhci/cli@0.14.x autorun
+
+      # ── 5. Lighthouse (desktop — second pass, informational) ──────────────
+      - name: Lighthouse — desktop
+        run: |
+          npx @lhci/cli@0.14.x collect \
+            --url=http://localhost:4321/ \
+            --numberOfRuns=1 \
+            --settings.formFactor=desktop \
+            --settings.throttlingMethod=simulate \
+            --settings.screenEmulation.disabled=true \
+            --settings.throttling.cpuSlowdownMultiplier=1
+          npx @lhci/cli@0.14.x assert \
+            --assertions.categories:performance=["warn",{"minScore":0.85}] \
+            --assertions.categories:accessibility=["error",{"minScore":0.90}] \
+            --assertions.categories:seo=["error",{"minScore":0.90}] \
+            --assertions.categories:best-practices=["warn",{"minScore":0.85}]
+
+      # ── 6. Link check ─────────────────────────────────────────────────────
+      - name: Link check
+        run: |
+          npx linkinator http://localhost:4321/ \
+            --recurse \
+            --skip "fonts\.googleapis\.com|fonts\.gstatic\.com|schema\.org|w3\.org" \
+            --timeout 10000 \
+            --verbosity error
+        continue-on-error: true

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <!-- Background -->
+  <rect width="300" height="300" fill="#1C1C1C"/>
+
+  <!-- 2x2 diagonal grid mark — centered, large -->
+  <g transform="translate(105, 88)">
+    <!-- top-left: filled -->
+    <rect x="0" y="0" width="38" height="38" fill="#CFAE70"/>
+    <!-- top-right: outlined -->
+    <rect x="46" y="0" width="38" height="38" fill="none" stroke="#CFAE70" stroke-width="2.5"/>
+    <!-- bottom-left: outlined -->
+    <rect x="0" y="46" width="38" height="38" fill="none" stroke="#CFAE70" stroke-width="2.5"/>
+    <!-- bottom-right: filled -->
+    <rect x="46" y="46" width="38" height="38" fill="#CFAE70"/>
+  </g>
+
+  <!-- d2b2 wordmark -->
+  <text
+    x="150"
+    y="222"
+    font-family="'JetBrains Mono', 'Courier New', monospace"
+    font-size="32"
+    font-weight="500"
+    fill="#CFAE70"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    letter-spacing="3"
+  >d2b2</text>
+</svg>
