@@ -30,7 +30,7 @@ jobs:
       - name: Dist audit
         run: |
           echo "--- Required files ---"
-          for f in index.html sitemap.xml robots.txt og-image.png; do
+          for f in index.html sitemap.xml robots.txt og-image.jpg; do
             if [ -f "dist/$f" ]; then
               echo "✓ $f"
             else
