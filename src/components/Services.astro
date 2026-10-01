@@ -1,13 +1,14 @@
 ---
 // Services.astro
 
-const services = [
-  {
-    id: '01 / ENG',
-    title: 'AI Solutions Engineering',
-    body: 'End-to-end builds using AI tools, Python, and custom integrations — API connections, data pipelines, automation, and reporting systems that make your stack work as one. We don\'t spec it out for a dev team. We build it.',
-    tags: ['AI Tools', 'API Integrations', 'Python', 'Data Pipelines', 'Automation'],
-  },
+const top = {
+  id: '01 / ENG',
+  title: 'AI Solutions Engineering',
+  body: 'End-to-end builds using AI tools, Python, and custom integrations — API connections, data pipelines, automation, and reporting systems that make your stack work as one. We don\'t spec it out for a dev team. We build it.',
+  tags: ['AI Tools', 'API Integrations', 'Python', 'Data Pipelines', 'Automation'],
+};
+
+const mid = [
   {
     id: '02 / PAID',
     title: 'Paid Marketing Setup & Optimization',
@@ -20,17 +21,26 @@ const services = [
     body: 'SQL-driven analysis and custom reporting that give executives a clear view of what drives revenue and what wastes budget. Clean data and honest answers, not seasonal guesses.',
     tags: ['SQL', 'Dashboards', 'GA4', 'GTM'],
   },
+];
+
+const bottom = [
   {
     id: '04 / OPS',
     title: 'Marketing Infrastructure',
-    body: 'Tracking implementation, CRM workflows, AI tool setup, and automation pipelines that connect your stack and reduce manual overhead. Built to scale, documented so your team can run it without coming back.',
-    tags: ['HubSpot', 'Tracking', 'CRM Workflows', 'Automation'],
+    body: 'Tracking implementation, CRM tool setup, and automation pipelines that wire your stack together and reduce manual overhead. Built to scale, documented so your team can run it.',
+    tags: ['HubSpot', 'Tracking', 'GTM / GA4', 'Automation'],
   },
   {
     id: '05 / AEO',
     title: 'SEO & Answer Engine Optimization',
     body: 'Content strategy and optimization built for how people actually find answers, including AI search engines. Organic visibility that compounds long after the engagement ends.',
     tags: ['SEO', 'AEO / GEO', 'Content Strategy'],
+  },
+  {
+    id: '06 / REVOPS',
+    title: 'Revenue Operations',
+    body: 'Pipeline strategy, lead scoring, and sales-marketing handoff automation that close the loop between marketing spend and closed revenue. The strategic layer that makes the data and the stack actually work together.',
+    tags: ['Pipeline', 'Lead Scoring', 'CRM Workflows', 'Attribution'],
   },
 ];
 ---
@@ -42,9 +52,11 @@ const services = [
       <h2>What d2b2 does</h2>
     </div>
 
-    <div class="grid">
-      {services.map(s => (
-        <div class="card">
+    <div class="pyramid">
+
+      <!-- Row 1: flagship -->
+      <div class="pyramid-row row-top">
+        <div class="card card-featured">
           <div class="card-id">
             <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="0" y="0" width="9" height="9" fill="#CFAE70"/>
@@ -52,26 +64,76 @@ const services = [
               <rect x="0" y="11" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
               <rect x="11" y="11" width="9" height="9" fill="#CFAE70"/>
             </svg>
-            <span>{s.id}</span>
+            <span>{top.id}</span>
           </div>
-          <h3>{s.title}</h3>
-          <p>{s.body}</p>
+          <h3>{top.title}</h3>
+          <p>{top.body}</p>
           <div class="tags">
-            {s.tags.map(t => <span class="tag">{t}</span>)}
+            {top.tags.map(t => <span class="tag">{t}</span>)}
           </div>
         </div>
-      ))}
+      </div>
+
+      <!-- Row 2: two services -->
+      <div class="pyramid-row row-mid">
+        {mid.map(s => (
+          <div class="card">
+            <div class="card-id">
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="0" y="0" width="9" height="9" fill="#CFAE70"/>
+                <rect x="11" y="0" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+                <rect x="0" y="11" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+                <rect x="11" y="11" width="9" height="9" fill="#CFAE70"/>
+              </svg>
+              <span>{s.id}</span>
+            </div>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+            <div class="tags">
+              {s.tags.map(t => <span class="tag">{t}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Row 3: three services -->
+      <div class="pyramid-row row-bottom">
+        {bottom.map(s => (
+          <div class="card">
+            <div class="card-id">
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="0" y="0" width="9" height="9" fill="#CFAE70"/>
+                <rect x="11" y="0" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+                <rect x="0" y="11" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+                <rect x="11" y="11" width="9" height="9" fill="#CFAE70"/>
+              </svg>
+              <span>{s.id}</span>
+            </div>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+            <div class="tags">
+              {s.tags.map(t => <span class="tag">{t}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+
     </div>
   </div>
 </section>
 
 <style>
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  .pyramid {
+    display: flex;
+    flex-direction: column;
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
+  }
+
+  .pyramid-row {
+    display: flex;
+    gap: 1px;
   }
 
   .card {
@@ -80,10 +142,19 @@ const services = [
     display: flex;
     flex-direction: column;
     gap: 14px;
+    flex: 1;
     transition: background 0.2s;
   }
 
   .card:hover { background: var(--surface); }
+
+  /* Featured top card: full width, slightly more padding, gold tint */
+  .card-featured {
+    background: var(--gold-pale);
+    padding: 44px 48px;
+  }
+
+  .card-featured:hover { background: color-mix(in srgb, var(--gold-pale) 80%, var(--surface)); }
 
   .card-id {
     display: flex;
@@ -100,12 +171,20 @@ const services = [
     color: var(--text);
   }
 
+  .card-featured h3 {
+    font-size: 1.5rem;
+  }
+
   .card p {
     color: var(--text-muted);
     font-size: 0.875rem;
     line-height: 1.75;
     font-weight: 300;
     flex: 1;
+  }
+
+  .card-featured p {
+    max-width: 680px;
   }
 
   .tags {
@@ -124,8 +203,10 @@ const services = [
     letter-spacing: 0.02em;
   }
 
-  @media (max-width: 768px) {
-    .grid { grid-template-columns: 1fr; }
+  @media (max-width: 900px) {
+    .pyramid-row { flex-direction: column; }
     .card { padding: 24px; }
+    .card-featured { padding: 28px; }
+    .card-featured h3 { font-size: 1.2rem; }
   }
 </style>
