@@ -16,10 +16,10 @@ const mid = [
     tags: ['Google Ads', 'Meta Ads', 'Campaign Architecture', 'Attribution'],
   },
   {
-    id: '03 / DATA',
-    title: 'Revenue Analytics & Reporting',
-    body: 'SQL-driven analysis and custom reporting that give executives a clear view of what drives revenue and what wastes budget. Clean data and honest answers, not seasonal guesses.',
-    tags: ['SQL', 'Dashboards', 'GA4', 'GTM'],
+    id: '03 / REVOPS',
+    title: 'Revenue Operations',
+    body: 'Pipeline strategy, lead scoring, and sales-marketing handoff automation that close the loop between marketing spend and closed revenue. The strategic layer that makes the data and the stack actually work together.',
+    tags: ['Pipeline', 'Lead Scoring', 'CRM Workflows', 'Attribution'],
   },
 ];
 
@@ -37,12 +37,19 @@ const bottom = [
     tags: ['SEO', 'AEO / GEO', 'Content Strategy'],
   },
   {
-    id: '06 / REVOPS',
-    title: 'Revenue Operations',
-    body: 'Pipeline strategy, lead scoring, and sales-marketing handoff automation that close the loop between marketing spend and closed revenue. The strategic layer that makes the data and the stack actually work together.',
-    tags: ['Pipeline', 'Lead Scoring', 'CRM Workflows', 'Attribution'],
+    id: '06 / DATA',
+    title: 'Revenue Analytics & Reporting',
+    body: 'SQL-driven analysis and custom reporting that give executives a clear view of what drives revenue and what wastes budget. Clean data and honest answers, not seasonal guesses.',
+    tags: ['SQL', 'Dashboards', 'GA4', 'GTM'],
   },
 ];
+
+const icon = `<svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <rect x="0" y="0" width="9" height="9" fill="#CFAE70"/>
+  <rect x="11" y="0" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+  <rect x="0" y="11" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
+  <rect x="11" y="11" width="9" height="9" fill="#CFAE70"/>
+</svg>`;
 ---
 
 <section id="services">
@@ -54,66 +61,42 @@ const bottom = [
 
     <div class="pyramid">
 
-      <!-- Row 1: flagship -->
       <div class="pyramid-row row-top">
-        <div class="card card-featured">
+        <div class="card">
           <div class="card-id">
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="0" y="0" width="9" height="9" fill="#CFAE70"/>
-              <rect x="11" y="0" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
-              <rect x="0" y="11" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
-              <rect x="11" y="11" width="9" height="9" fill="#CFAE70"/>
-            </svg>
+            <Fragment set:html={icon} />
             <span>{top.id}</span>
           </div>
           <h3>{top.title}</h3>
           <p>{top.body}</p>
-          <div class="tags">
-            {top.tags.map(t => <span class="tag">{t}</span>)}
-          </div>
+          <div class="tags">{top.tags.map(t => <span class="tag">{t}</span>)}</div>
         </div>
       </div>
 
-      <!-- Row 2: two services -->
       <div class="pyramid-row row-mid">
         {mid.map(s => (
           <div class="card">
             <div class="card-id">
-              <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="0" y="0" width="9" height="9" fill="#CFAE70"/>
-                <rect x="11" y="0" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
-                <rect x="0" y="11" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
-                <rect x="11" y="11" width="9" height="9" fill="#CFAE70"/>
-              </svg>
+              <Fragment set:html={icon} />
               <span>{s.id}</span>
             </div>
             <h3>{s.title}</h3>
             <p>{s.body}</p>
-            <div class="tags">
-              {s.tags.map(t => <span class="tag">{t}</span>)}
-            </div>
+            <div class="tags">{s.tags.map(t => <span class="tag">{t}</span>)}</div>
           </div>
         ))}
       </div>
 
-      <!-- Row 3: three services -->
       <div class="pyramid-row row-bottom">
         {bottom.map(s => (
           <div class="card">
             <div class="card-id">
-              <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="0" y="0" width="9" height="9" fill="#CFAE70"/>
-                <rect x="11" y="0" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
-                <rect x="0" y="11" width="9" height="9" fill="none" stroke="#CFAE70" stroke-width="1"/>
-                <rect x="11" y="11" width="9" height="9" fill="#CFAE70"/>
-              </svg>
+              <Fragment set:html={icon} />
               <span>{s.id}</span>
             </div>
             <h3>{s.title}</h3>
             <p>{s.body}</p>
-            <div class="tags">
-              {s.tags.map(t => <span class="tag">{t}</span>)}
-            </div>
+            <div class="tags">{s.tags.map(t => <span class="tag">{t}</span>)}</div>
           </div>
         ))}
       </div>
@@ -148,14 +131,6 @@ const bottom = [
 
   .card:hover { background: var(--surface); }
 
-  /* Featured top card: full width, slightly more padding, gold tint */
-  .card-featured {
-    background: var(--gold-pale);
-    padding: 44px 48px;
-  }
-
-  .card-featured:hover { background: color-mix(in srgb, var(--gold-pale) 80%, var(--surface)); }
-
   .card-id {
     display: flex;
     align-items: center;
@@ -171,20 +146,12 @@ const bottom = [
     color: var(--text);
   }
 
-  .card-featured h3 {
-    font-size: 1.5rem;
-  }
-
   .card p {
     color: var(--text-muted);
     font-size: 0.875rem;
     line-height: 1.75;
     font-weight: 300;
     flex: 1;
-  }
-
-  .card-featured p {
-    max-width: 680px;
   }
 
   .tags {
@@ -203,10 +170,22 @@ const bottom = [
     letter-spacing: 0.02em;
   }
 
-  @media (max-width: 900px) {
+  /* Mobile: single column stack */
+  @media (max-width: 768px) {
     .pyramid-row { flex-direction: column; }
     .card { padding: 24px; }
-    .card-featured { padding: 28px; }
-    .card-featured h3 { font-size: 1.2rem; }
+  }
+
+  /* Tablet: keep top solo, mid 2-col, bottom 2-col (wrap last card) */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .row-bottom {
+      flex-wrap: wrap;
+    }
+    .row-bottom .card {
+      flex: 1 1 calc(50% - 1px);
+    }
+    .row-bottom .card:last-child {
+      flex: 1 1 100%;
+    }
   }
 </style>
